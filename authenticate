@@ -1,0 +1,89 @@
+{
+    "apiVersion": 1,
+    "swaggerVersion": 1.2,
+    "basePath": "http://iapitest-dev.merck.com/v1/ldap-merck",
+    "description": "Authentication endpoints",
+    "resourcePath": "/authenticate",
+    "produces": [
+        "application/json",
+        "application/xml"
+    ],
+    "consumes": [
+        "application/json",
+        "application/xml"
+    ],
+    "apis": [{
+        "path": "/authenticate",
+        "operations": [{
+            "method": "POST",
+            "summary": "Authenticates a user.",
+            "notes": null,
+            "type": "string",
+            "nickname": "authenticateUser",
+            "parameters": [{
+                "name": "username",
+                "description": "The username to operate on",
+                "required": true,
+                "type": "string",
+                "paramType": "form"
+            }, {
+                "name": "password",
+                "description": "The password for login in clear text",
+                "required": true,
+                "type": "string",
+                "format": "password",
+                "paramType": "form"
+            }],
+            "responseMessages": [{
+                "code": 400,
+                "message": "Invalid username and password combination."
+            }]
+        }]
+    }],
+    "models": {
+        "Status": {
+            "id": "Status",
+            "description": "An object describing the API status.",
+            "required": [
+                "status",
+                "message"
+            ],
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "id": "User",
+            "description": "An object describing a user that is received from various API calls.",
+            "required": [
+                "isid",
+                "email",
+                "employeeID",
+                "first_name",
+                "last_name"
+            ],
+            "properties": {
+                "isid": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "employeeID": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

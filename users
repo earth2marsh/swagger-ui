@@ -1,0 +1,120 @@
+{
+    "apiVersion": 1,
+    "swaggerVersion": 1.2,
+    "basePath": "http://iapitest-dev.merck.com/v1/ldap-merck",
+    "description": "User-related operations",
+    "resourcePath": "/users",
+    "produces": [
+        "application/json",
+        "application/xml"
+    ],
+    "consumes": [
+        "application/json",
+        "application/xml"
+    ],
+    "apis": [{
+        "path": "/users",
+        "operations": [{
+            "method": "GET",
+            "summary": "Retrieve users.",
+            "notes": "Returns a list of all users.",
+            "type": "array",
+            "items": {
+                "$ref": "User"
+            },
+            "nickname": "getUsers",
+            "parameters": [{
+                "name": "search",
+                "paramType": "query",
+                "description": "The search string in LDAP format",
+                "type": "string",
+                "required": true
+            }, {
+                "name": "limit",
+                "description": "The maximum number of records to return.  Depending on the data, less values may be returned",
+                "required": false,
+                "type": "integer",
+                "format": "int64",
+                "paramType": "query",
+                "minimum": 1,
+                "maximum": 20,
+                "defaultValue": 10
+            }, {
+                "name": "offset",
+                "description": "An offset for the first record to retrieve.  Less records than the skip returns an empty result",
+                "required": false,
+                "type": "integer",
+                "format": "int64",
+                "paramType": "query",
+                "minimum": 0,
+                "defaultValue": 0
+            }]
+        }]
+    }, {
+        "path": "/users/{isid}",
+        "operations": [{
+            "method": "GET",
+            "summary": "Retrieve a specific user.",
+            "notes": "Returns a specific user profile.",
+            "type": "User",
+            "nickname": "getUser",
+            "parameters": [{
+                "name": "isid",
+                "description": "The ID of the user to retrieve.",
+                "required": true,
+                "type": "string",
+                "paramType": "path"
+            }],
+            "responseMessages": [{
+                "code": 404,
+                "message": "User not found."
+            }]
+        }]
+    },
+    "models": {
+        "Status": {
+            "id": "Status",
+            "description": "An object describing the API status.",
+            "required": [
+                "status",
+                "message"
+            ],
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "id": "User",
+            "description": "An object describing a user that is received from various API calls.",
+            "required": [
+                "isid",
+                "email",
+                "employeeID",
+                "first_name",
+                "last_name"
+            ],
+            "properties": {
+                "isid": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "employeeID": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
