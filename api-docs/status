@@ -19,6 +19,7 @@
             "summary": "Return status of API.",
             "notes": "Returns status of all endpoints for the API.",
             "type": "array",
+            "authorizations": { "apiKey" },
             "items": {
                 "$ref": "Status"
             },

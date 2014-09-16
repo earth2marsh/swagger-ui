@@ -20,6 +20,7 @@
             "notes": null,
             "type": "string",
             "nickname": "authenticateUser",
+            "authorizations": { "apiKey" },
             "parameters": [{
                 "name": "username",
                 "description": "The username to operate on",

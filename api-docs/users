@@ -19,6 +19,7 @@
             "summary": "Retrieve users.",
             "notes": "Returns a list of all users.",
             "type": "array",
+            "authorizations": { "apiKey" },
             "items": {
                 "$ref": "User"
             },
@@ -58,6 +59,7 @@
             "notes": "Returns a specific user profile.",
             "type": "User",
             "nickname": "getUser",
+            "authorizations": {"apiKey" },
             "parameters": [{
                 "name": "isid",
                 "description": "The ID of the user to retrieve.",
